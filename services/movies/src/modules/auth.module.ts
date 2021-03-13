@@ -7,6 +7,13 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestConfig } from '../config/config.interface';
 
+export interface User {
+  id: number;
+  role: 'basic' | 'premium';
+  name: string;
+  username: string;
+}
+
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(private readonly configService: ConfigService) {
@@ -17,8 +24,13 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     });
   }
 
-  async validate(payload: any) {
-    return { userId: payload.sub, username: payload.username };
+  async validate(payload: any): Promise<User> {
+    return {
+      id: parseFloat(payload.sub),
+      role: payload.role,
+      name: payload.name,
+      username: payload.username,
+    };
   }
 }
 

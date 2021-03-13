@@ -27,6 +27,8 @@ services:
       DB_USER: ${DB_USER}
       DB_NAME: ${DB_NAME}
       DATABASE_URL: postgresql://${DB_USER}:${DB_PASSWORD}@db:5432/${DB_NAME}?schema=public
+      OMDB_API_URL: http://www.omdbapi.com/
+      OMDB_API_KEY: 21c79936
     depends_on:
       - db
 

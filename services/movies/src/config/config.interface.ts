@@ -1,6 +1,7 @@
 export interface Config {
   nest: NestConfig;
   cors: CorsConfig;
+  omdb: OmdbConfig;
 }
 
 export interface NestConfig {
@@ -10,4 +11,9 @@ export interface NestConfig {
 
 export interface CorsConfig {
   enabled: boolean;
+}
+
+export interface OmdbConfig {
+  baseUrl: string;
+  apiKey: string;
 }
