@@ -1,8 +1,11 @@
+import { Module } from '@nestjs/common';
+import { PassportModule } from '@nestjs/passport';
+import { JwtModule } from '@nestjs/jwt';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { NestConfig } from 'src/config/config.interface';
+import { NestConfig } from '../config/config.interface';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
@@ -18,3 +21,18 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     return { userId: payload.sub, username: payload.username };
   }
 }
+
+@Module({
+  imports: [
+    PassportModule,
+    JwtModule.registerAsync({
+      useFactory: async (configService: ConfigService) => ({
+        secret: configService.get<NestConfig>('nest').jwt,
+      }),
+      inject: [ConfigService],
+    }),
+  ],
+  providers: [JwtStrategy],
+  exports: [],
+})
+export class AuthModule {}
