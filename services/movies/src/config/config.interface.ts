@@ -5,6 +5,7 @@ export interface Config {
   cors: CorsConfig;
   omdb: OmdbConfig;
   credits: CreditsConfig;
+  swagger: SwaggerConfig;
 }
 
 export interface NestConfig {
@@ -22,3 +23,11 @@ export interface OmdbConfig {
 }
 
 export type CreditsConfig = Record<UserRole, number>;
+
+export interface SwaggerConfig {
+  enabled: boolean;
+  title: string;
+  description: string;
+  version: string;
+  path: string;
+}

@@ -19,6 +19,13 @@ const config: Config = {
     basic: 5,
     premium: Infinity,
   },
+  swagger: {
+    enabled: true,
+    title: 'MoviesService',
+    description: 'The NestJS API description',
+    version: '1.0',
+    path: 'api',
+  },
 };
 
 export default (): Config => config;

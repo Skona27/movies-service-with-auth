@@ -27,7 +27,9 @@
     "@nestjs/jwt": "^7.2.0",
     "@nestjs/passport": "^7.1.5",
     "@nestjs/platform-express": "^6.0.0",
+    "@nestjs/swagger": "^4.7.16",
     "@prisma/client": "^2.18.0",
+    "class-validator": "^0.13.1",
     "dotenv": "^8.2.0",
     "node-fetch": "^2.6.1",
     "passport": "^0.4.1",
@@ -35,7 +37,8 @@
     "prisma": "^2.18.0",
     "reflect-metadata": "^0.1.12",
     "rimraf": "^2.6.2",
-    "rxjs": "^6.3.3"
+    "rxjs": "^6.3.3",
+    "swagger-ui-express": "^4.1.6"
   },
   "devDependencies": {
     "@nestjs/testing": "^6.0.0",

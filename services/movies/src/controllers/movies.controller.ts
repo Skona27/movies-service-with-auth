@@ -8,6 +8,7 @@ import {
   HttpException,
   HttpStatus,
 } from '@nestjs/common';
+import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { ConfigService } from '@nestjs/config';
 import { JwtAuthGuard } from '../guards/jwt-auth.guard';
 import { PublicMovieDTO, CreateMovieDTO } from '../models/movie.model';
@@ -24,15 +25,31 @@ export class MoviesController {
     private readonly configService: ConfigService,
   ) {}
 
-  @UseGuards(JwtAuthGuard)
   @Get('/movies')
+  @ApiTags('movies')
+  @ApiBearerAuth()
+  @ApiResponse({
+    status: 200,
+    isArray: true,
+    type: PublicMovieDTO,
+    description: 'Get all movies created by user',
+  })
+  @UseGuards(JwtAuthGuard)
   async getMovies(@Request() req): Promise<PublicMovieDTO[]> {
     const user: User = req.user;
     return this.moviesService.findAll(user.id);
   }
 
-  @UseGuards(JwtAuthGuard)
   @Post('/movies')
+  @ApiTags('movies')
+  @ApiBearerAuth()
+  @ApiResponse({
+    status: 201,
+    isArray: false,
+    type: PublicMovieDTO,
+    description: 'Create a movie based on title',
+  })
+  @UseGuards(JwtAuthGuard)
   async createMovie(
     @Request() req,
     @Body() createMovieDto: CreateMovieDTO,
