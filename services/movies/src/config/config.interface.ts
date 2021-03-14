@@ -1,7 +1,10 @@
+import { UserRole } from '../modules/auth.module';
+
 export interface Config {
   nest: NestConfig;
   cors: CorsConfig;
   omdb: OmdbConfig;
+  credits: CreditsConfig;
 }
 
 export interface NestConfig {
@@ -17,3 +20,5 @@ export interface OmdbConfig {
   baseUrl: string;
   apiKey: string;
 }
+
+export type CreditsConfig = Record<UserRole, number>;

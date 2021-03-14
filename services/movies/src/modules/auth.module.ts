@@ -7,9 +7,11 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestConfig } from '../config/config.interface';
 
+export type UserRole = 'basic' | 'premium';
+
 export interface User {
   id: number;
-  role: 'basic' | 'premium';
+  role: UserRole;
   name: string;
   username: string;
 }

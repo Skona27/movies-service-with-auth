@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { CreateMovieDTO, PublicMovieDTO } from '../models/movie.model';
-import { User } from '../modules/auth.module';
 import { PrismaService } from './prisma.service';
 import { OmdbService } from './omdb.service';
 
@@ -11,26 +10,29 @@ export class MoviesService {
     private omdbService: OmdbService,
   ) {}
 
-  async create(user: User, movieDto: CreateMovieDTO): Promise<PublicMovieDTO> {
+  async create(
+    userId: number,
+    movieDto: CreateMovieDTO,
+  ): Promise<PublicMovieDTO> {
     const movie = await this.omdbService.fetchMovieByTitle(movieDto.title);
 
-    const { userId, ...publicData } = await this.prisma.movie.create({
+    const { userId: _, ...publicData } = await this.prisma.movie.create({
       data: {
+        userId,
         title: movie.Title,
         released: movie.Released,
         genre: movie.Genre,
         directory: movie.Director,
-        userId: user.id,
       },
     });
 
     return publicData;
   }
 
-  async findAll(user: User): Promise<PublicMovieDTO[]> {
+  async findAll(userId: number): Promise<PublicMovieDTO[]> {
     const data = await this.prisma.movie.findMany({
       where: {
-        userId: user.id,
+        userId,
       },
     });
 

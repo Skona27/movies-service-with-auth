@@ -17,3 +17,10 @@ model Movie {
   createdAt  DateTime  @default(now())
   modifiedAt DateTime?
 }
+
+model Credit {
+  id        Int      @default(autoincrement()) @id
+  userId    Int
+  movieId   Int
+  createdAt DateTime @default(now())
+}
