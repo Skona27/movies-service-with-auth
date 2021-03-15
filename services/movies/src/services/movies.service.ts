@@ -3,8 +3,13 @@ import { CreateMovieDTO, PublicMovieDTO } from '../models/movie.model';
 import { PrismaService } from './prisma.service';
 import { OmdbService } from './omdb.service';
 
+export interface IMoviesService {
+  create(userId: number, movieDto: CreateMovieDTO): Promise<PublicMovieDTO>;
+  findAll(userId: number): Promise<PublicMovieDTO[]>;
+}
+
 @Injectable()
-export class MoviesService {
+export class MoviesService implements IMoviesService {
   constructor(
     private prisma: PrismaService,
     private omdbService: OmdbService,

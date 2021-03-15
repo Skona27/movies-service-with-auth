@@ -2,8 +2,13 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from './prisma.service';
 import { PublicCreditDTO } from '../models/credit.model';
 
+export interface ICreditsService {
+  create(userId: number, movieId: number): Promise<PublicCreditDTO>;
+  findMonthlyCount(userId): Promise<number>;
+}
+
 @Injectable()
-export class CreditsService {
+export class CreditsService implements ICreditsService {
   constructor(private prisma: PrismaService) {}
 
   async create(userId: number, movieId: number): Promise<PublicCreditDTO> {
