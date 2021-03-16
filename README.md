@@ -169,3 +169,4 @@ Technologies used for the movies service:
 - Create docker environment for development which autodetects changes in files
 - Write more tests which would cover negative responses
 - Create some cron task for deleting old record from `credits` table (only if we would not care for the usage statistcs from previous periods)
+- Executing e2e test on CI workflow - the database is needed for that, not sure how to end docker-compose in workflow so it won't run the database service forever

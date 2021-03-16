@@ -16,6 +16,3 @@ jobs:
 
       - name: unit tests
         run: TEST=unit docker-compose -f docker-compose.ci.yml up
-
-      - name: e2e tests
-        run: TEST=e2e docker-compose -f docker-compose.ci.yml up
