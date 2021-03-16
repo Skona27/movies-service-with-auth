@@ -4,14 +4,16 @@ import { PublicMovieDTO, CreateMovieDTO } from '../models/movie.model';
 
 @Injectable()
 export class MoviesServiceMock implements IMoviesService {
-  private readonly movie: PublicMovieDTO = {
+  /**
+   * Do not declare 'createdAt' since it may vary between tests
+   */
+  private readonly movie = {
     id: 1,
     title: 'Godfather',
     genre: 'Crime',
     released: '24 March 1972',
     directory: 'Francis Ford Coppola',
-    createdAt: new Date(),
-  };
+  } as PublicMovieDTO;
 
   async create(
     userId: number,

@@ -3,7 +3,7 @@ import { Config } from './config.interface';
 
 dotenv.config();
 
-const config: Config = {
+export const config: Config = {
   nest: {
     port: process.env.PORT || 3000,
     jwt: process.env.JWT_SECRET,
@@ -28,4 +28,6 @@ const config: Config = {
   },
 };
 
-export default (): Config => config;
+export function getConfig(): Config {
+  return config;
+}

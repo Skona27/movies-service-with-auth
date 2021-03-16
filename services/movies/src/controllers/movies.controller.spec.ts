@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { HttpException } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import config from '../config/config';
+import { getConfig } from '../config/config';
 import { MoviesController } from './movies.controller';
 import { MoviesService } from '../services/movies.service';
 import { MoviesServiceMock } from '../mocks/moviesMock.service';
@@ -24,7 +24,7 @@ describe('MoviesController', () => {
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
       controllers: [MoviesController],
-      imports: [ConfigModule.forRoot({ isGlobal: true, load: [config] })],
+      imports: [ConfigModule.forRoot({ isGlobal: true, load: [getConfig] })],
       providers: [
         {
           provide: MoviesService,
