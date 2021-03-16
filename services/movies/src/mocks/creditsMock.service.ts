@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ICreditsService } from '../services/credits.service';
-import { PublicCreditDTO } from 'dist/models/credit.model';
+import { PublicCreditDTO } from '../models/credit.model';
 
 @Injectable()
 export class CreditsServiceMock implements ICreditsService {

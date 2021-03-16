@@ -15,7 +15,7 @@ import { PublicMovieDTO, CreateMovieDTO } from '../models/movie.model';
 import { User } from '../modules/auth.module';
 import { MoviesService } from '../services/movies.service';
 import { CreditsService } from '../services/credits.service';
-import { CreditsConfig } from 'dist/config/config.interface';
+import { CreditsConfig } from '../config/config.interface';
 
 @Controller()
 export class MoviesController {
